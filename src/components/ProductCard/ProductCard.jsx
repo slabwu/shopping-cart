@@ -1,9 +1,9 @@
 import styles from './ProductCard.module.css'
 
-export default function ProductCard() {
+export default function ProductCard({ product }) {
     return (
         <div className={styles.card}>
-            <h3>Product</h3>
+            <h3>{product.title}</h3>
         </div>
     )
 }

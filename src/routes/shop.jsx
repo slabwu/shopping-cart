@@ -1,13 +1,28 @@
+// import { useLoaderData } from "react-router-dom";
 import ProductCard from "../components/ProductCard/ProductCard.jsx";
 
+//  export function loader() {
+//   const products = [
+//     {
+//       title: 'umbrella'
+//     },
+//     {
+//       title: 'book'
+//     }
+//   ]
+//   return products
+//  }
+
 const Shop = () => {
+  const products = [{title:'cat'}]
+
   return (
     <div>
       <h2>This is the shop.</h2>
       <div>
-        <ProductCard></ProductCard>
-        <ProductCard></ProductCard>
-        <ProductCard></ProductCard>
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
       </div>
     </div>
   );
