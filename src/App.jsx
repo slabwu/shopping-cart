@@ -1,4 +1,3 @@
-import './App.css'
 import { Outlet, NavLink } from "react-router-dom";
 
 function App() {

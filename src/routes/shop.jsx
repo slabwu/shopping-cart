@@ -1,4 +1,4 @@
-import ProductCard from "./components/productCard";
+import ProductCard from "../components/ProductCard/ProductCard.jsx";
 
 const Shop = () => {
   return (
