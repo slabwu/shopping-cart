@@ -1,20 +1,23 @@
-// import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import ProductCard from "../components/ProductCard/ProductCard.jsx"
 
-//  export function loader() {
-//   const products = [
-//     {
-//       title: 'umbrella'
-//     },
-//     {
-//       title: 'book'
-//     }
-//   ]
-//   return products
-//  }
+ export function loader() {
+  const products = [
+    {
+      title: 'umbrella'
+    },
+    {
+      title: 'book'
+    },
+    {
+      title: 'jacket'
+    }
+  ]
+  return products
+ }
 
 export default function Shop() {
-  const products = [{title:'cat'}]
+  const products = useLoaderData()
 
   return (
     <div>

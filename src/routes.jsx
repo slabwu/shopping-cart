@@ -1,6 +1,6 @@
 import App from './App'
 import Homepage from './routes/homepage.jsx'
-import Shop from './routes/shop.jsx'
+import Shop, { loader as shopLoader } from './routes/shop.jsx'
 import Cart from './routes/cart.jsx'
 
 const routes = [
@@ -10,16 +10,17 @@ const routes = [
         children: [
             {
                 index: true,
-                element: <Homepage />,
+                element: <Homepage />
             },
             {
                 path: 'shop',
                 element: <Shop />,
+                loader: shopLoader
             },
             {
                 path: 'cart',
-                element: <Cart />,
-            },
+                element: <Cart />
+            }
         ]
     }
 ]
