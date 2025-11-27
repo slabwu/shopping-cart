@@ -57,13 +57,18 @@ function App() {
     )
   }
 
+  let cartCount = 0
+  Object.values(cartItems).forEach(item => {
+    cartCount += item.quantity
+  })
+
   return (
     <ShopContext value={{ products, cartItems, addToCart }}>
       <header>
         <h1>Header</h1>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='shop'>Shop</NavLink>
-        <NavLink to='cart'>Cart</NavLink>
+        <NavLink to='cart'>Cart {`(${cartCount})`}</NavLink>
       </header>
       <div>
         <Outlet />
