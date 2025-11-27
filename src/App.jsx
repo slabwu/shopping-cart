@@ -4,7 +4,9 @@ import { useState, useEffect, createContext } from 'react'
 export const ShopContext = createContext({
   products: [],
   cartItems: [],
-  addToCart: () => {}
+  addToCart: () => {},
+  changeCartQuantity: () => {},
+  deleteCartItem: () => {}
 })
 
 async function fetchProducts() {
@@ -45,16 +47,33 @@ function App() {
     fetchProducts()
   }, [])
 
-  function addToCart(product) {
+  function addToCart(product, count) {
     setCartItems({
         ...cartItems, 
         [product.id]: {
           title: product.title,
           price: product.price,
-          quantity: (product.id in cartItems) ? cartItems[product.id].quantity + 1 : 1
+          quantity: (product.id in cartItems) ? cartItems[product.id].quantity + count : count,
+          id: product.id
         }
       }
     )
+  }
+
+  function changeCartQuantity(id, count) {
+    setCartItems({
+        ...cartItems, 
+        [id]: {
+          ...cartItems[id],
+          quantity: count
+        }
+      }
+    )
+  }
+
+  function deleteCartItem(id) {
+    const { [id]: _, ...items } = cartItems
+    setCartItems(items)
   }
 
   let cartCount = 0
@@ -63,7 +82,7 @@ function App() {
   })
 
   return (
-    <ShopContext value={{ products, cartItems, addToCart }}>
+    <ShopContext value={{ products, cartItems, addToCart, changeCartQuantity, deleteCartItem }}>
       <header>
         <h1>Header</h1>
         <NavLink to='/'>Home</NavLink>

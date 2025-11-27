@@ -2,11 +2,11 @@ import styles from './Counter.module.css'
 
 export default function Counter({ count, setCount }) {
     function decreaseCount() {
-        if (count > 1) setCount(count => count - 1)
+        if (count > 1) setCount(count - 1)
     }
 
     function increaseCount() {
-        setCount(count => count + 1)
+        setCount(count + 1)
     }
 
     return (

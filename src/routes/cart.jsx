@@ -1,5 +1,6 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ShopContext } from '../App.jsx'
+import CartCard from '../components/CartCard/CartCard.jsx'
 
 export default function Cart() {
   const { cartItems }  = useContext(ShopContext)
@@ -13,11 +14,7 @@ export default function Cart() {
     <div>
       <h2>This is the cart.</h2>
       {cartItems && Object.keys(cartItems).map(id =>
-        <div key={id}>
-          <p>{cartItems[id].title}</p>
-          <p>{cartItems[id].quantity}</p>
-          <p>${cartItems[id].price * cartItems[id].quantity}</p>
-        </div>
+        <CartCard key={id} product={cartItems[id]} />
       )}
       <div>Total: ${Math.round(total * 100) / 100}</div>
     </div>
