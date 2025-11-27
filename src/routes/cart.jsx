@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ShopContext } from '../App.jsx'
 import CartCard from '../components/CartCard/CartCard.jsx'
 

@@ -66,3 +66,48 @@ header a:hover {
   gap: 50px;
   width: 100%;
 }
+
+.productPage {
+  display: flex;
+  margin: 80px;
+  gap: 80px;
+}
+
+.productPage h2 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.productPage h3 {
+  font-size: 50px;
+  margin: 10px 0 30px;
+}
+
+.productPage h4 {
+  font-size: 20px;
+  margin: 4px;
+}
+
+.productPage p {
+  font-size: 16px;
+  line-height: 160%;
+  width: 600px;
+  margin-bottom: 50px;
+}
+
+.purchase {
+  color: white;
+  background-color: blueviolet;
+  padding: 20px 30px 20px;
+  border: none;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 20px 10px 0 0;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.purchase:hover {
+  cursor: pointer;
+  background-color: purple;
+}

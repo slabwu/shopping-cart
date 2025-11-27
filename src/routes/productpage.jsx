@@ -10,18 +10,23 @@ export default function ProductPage() {
   const { id } = useParams()
   const product = products[id - 1]
 
+  let rating = Math.floor(product.rating.rate)
+  let stars = '★'.repeat(rating) + '☆'.repeat(5 - rating)
+ 
   return (
-    <div>
-      <h2>{product.title}</h2>
-      <h3>${product.price}</h3>
-      <h3>{product.description}</h3>
-      <h3>{product.category}</h3>
-      <h3>{product.rating.rate} stars from {product.rating.count} people</h3>
+    <div className='productPage'>
       <img src={product.image} alt={product.title} />
-      <div>
-        <Counter count={count} setCount={setCount} />
-        <Link onClick={() => addToCart(product, count)} to='/cart'>Buy now</Link>
-        <button onClick={() => addToCart(product, count)}>Add to Cart</button>
+      <div className='productInfo'>
+        <h2>{product.title}</h2>
+        <h4>{product.category}</h4>
+        <h4>{stars} {product.rating.count}</h4>
+        <h3>${product.price}</h3>
+        <p>{product.description}</p>
+        <div>
+            <Counter count={count} setCount={setCount} />
+            <Link onClick={() => addToCart(product, count)} to='/cart' className='purchase'>Buy now</Link>
+            <button onClick={() => addToCart(product, count)} className='purchase'>Add to Cart</button>
+        </div>
       </div>
     </div>
   )

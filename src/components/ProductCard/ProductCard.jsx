@@ -2,10 +2,8 @@ import { Link } from 'react-router-dom'
 import styles from './ProductCard.module.css'
 
 export default function ProductCard({ product }) {
-    let stars = ''
-    for (let i = 0; i < Math.floor(product.rating.rate); i++) {
-        stars += '★'
-    }
+    let rating = Math.floor(product.rating.rate)
+    let stars = '★'.repeat(rating) + '☆'.repeat(5 - rating)
 
     return (
         <>
