@@ -1,7 +1,8 @@
 import App from './App'
 import Homepage from './routes/homepage.jsx'
-import Shop, { loader as shopLoader } from './routes/shop.jsx'
+import Shop from './routes/shop.jsx'
 import Cart from './routes/cart.jsx'
+import ProductPage, { loader as productLoader} from './routes/productpage.jsx'
 
 const routes = [
     {
@@ -15,7 +16,11 @@ const routes = [
             {
                 path: 'shop',
                 element: <Shop />,
-                loader: shopLoader
+            },
+            {
+                path: 'shop/product/:id',
+                element: <ProductPage />,
+                loader: productLoader
             },
             {
                 path: 'cart',

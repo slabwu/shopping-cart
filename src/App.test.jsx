@@ -68,6 +68,16 @@ describe('Shop page', () => {
     await goToShop(user)
     const section = await screen.findByTestId('productSection')
 
-    expect(within(section).getAllByRole('link')).toHaveLength(20)
+    expect(await within(section).findAllByRole('link')).toHaveLength(20)
+  })
+
+  it('directs user to product page', async () => {
+    const user = userEvent.setup()
+    await goToShop(user)
+
+    const button = await screen.findByRole('link', {name: /Fjallraven/})
+    await user.click(button)
+
+    expect(await screen.findByText('Buy now')).toBeInTheDocument()
   })
 })

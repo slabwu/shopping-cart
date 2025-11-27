@@ -1,8 +1,41 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from 'react-router-dom'
+import { useState, useEffect, createContext } from 'react'
+
+export const ShopContext = createContext({
+  products: [],
+  cartItems: [],
+  addToCart: () => {}
+})
 
 function App() {
+  const [cartItems, setCartItems] = useState([])
+  const [products, setProducts] = useState([])
+  
+  useEffect(() => {
+    async function fetchProducts() {
+      let productData
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products`)
+        if (!response.ok) {
+          throw new Error(`${response.status} error`)
+        }
+        productData = await response.json()
+      } catch(err) {
+        console.log(err)
+      } finally {
+        setProducts(productData)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
+  function addToCart(product) {
+    setCartItems([cartItems, product])
+  }
+
   return (
-    <>
+    <ShopContext value={{ products, cartItems, addToCart }}>
       <header>
         <h1>Header</h1>
         <NavLink to='/'>Home</NavLink>
@@ -12,7 +45,7 @@ function App() {
       <div>
         <Outlet />
       </div>
-    </>
+    </ShopContext>
   )
 }
 
