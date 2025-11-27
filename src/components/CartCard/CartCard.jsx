@@ -5,7 +5,7 @@ import { ShopContext } from '../../App'
 
 export default function CartCard({ product }) {
     const [ count, setCount ] = useState(product.quantity)
-    const { changeCartQuantity }  = useContext(ShopContext)
+    const { changeCartQuantity, deleteCartItem }  = useContext(ShopContext)
 
     function updateCount(newCount) {
         setCount(newCount)
@@ -18,6 +18,7 @@ export default function CartCard({ product }) {
           <p>{product.quantity}</p>
           <p>${product.price * product.quantity}</p>
           <Counter count={ count } setCount={ updateCount } />
+          <button onClick={() => deleteCartItem(product.id)}>✕</button>
         </div>
     )
 }
