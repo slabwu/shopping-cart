@@ -81,3 +81,37 @@ describe('Shop page', () => {
     expect(await screen.findByText('Buy now')).toBeInTheDocument()
   })
 })
+
+describe('Product page', () => {
+  async function goToProduct(user) {
+    await user.click(await screen.findByRole('link', {name: 'Go to shop'}))
+    await user.click(await screen.findByRole('link', {name: /Fjallraven/}))
+  }
+
+  it('renders product', async () => {
+    const user = userEvent.setup()
+    await goToProduct(user)
+
+    expect(await screen.findByText(/Your perfect pack/)).toBeInTheDocument()
+  })
+
+  it('redirects to cart when user clicks Buy now', async () => {
+    const user = userEvent.setup()
+    await goToProduct(user)
+
+    const button = await screen.findByRole('link', {name: 'Buy now'})
+    await user.click(button)
+
+    expect(await screen.findByText('This is the cart.')).toBeInTheDocument()
+  })
+
+  it('adds product to cart', async () => {
+    const user = userEvent.setup()
+    await goToProduct(user)
+
+    const button = await screen.findByRole('link', {name: 'Buy now'})
+    await user.click(button)
+
+    expect(await screen.findByText(/Fjallraven/)).toBeInTheDocument()
+  })
+})

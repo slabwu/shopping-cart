@@ -3,9 +3,9 @@ import { useContext } from 'react'
 import { ShopContext } from '../App.jsx'
 
 export default function ProductPage() {
-  const { products }  = useContext(ShopContext)
+  const { products, addToCart }  = useContext(ShopContext)
   const { id } = useParams()
-  const product = products[id]
+  const product = products[id - 1]
 
   return (
     <div>
@@ -16,8 +16,8 @@ export default function ProductPage() {
       <h3>{product.rating.rate} stars from {product.rating.count} people</h3>
       <img src={product.image} alt={product.title} />
       <div>
-        <Link to='/cart'>Buy now</Link>
-        <Link to='/'>Add to Cart</Link>
+        <Link onClick={() => addToCart(product)} to='/cart'>Buy now</Link>
+        <button onClick={() => addToCart(product)}>Add to Cart</button>
       </div>
     </div>
   )

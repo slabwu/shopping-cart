@@ -7,8 +7,23 @@ export const ShopContext = createContext({
   addToCart: () => {}
 })
 
+async function fetchProducts() {
+      let productData
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products`)
+        if (!response.ok) {
+          throw new Error(`${response.status} error`)
+        }
+        productData = await response.json()
+      } catch(err) {
+        console.log(err)
+      } finally {
+        setProducts(productData)
+      }
+}
+
 function App() {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState({})
   const [products, setProducts] = useState([])
   
   useEffect(() => {
@@ -31,7 +46,15 @@ function App() {
   }, [])
 
   function addToCart(product) {
-    setCartItems([cartItems, product])
+    setCartItems({
+        ...cartItems, 
+        [product.id]: {
+          title: product.title,
+          price: product.price,
+          quantity: (product.id in cartItems) ? cartItems[product.id].quantity + 1 : 1
+        }
+      }
+    )
   }
 
   return (
