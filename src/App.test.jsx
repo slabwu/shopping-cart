@@ -38,7 +38,7 @@ describe('App component', () => {
 
   it('renders change to cart page', async () => {
     const user = userEvent.setup()
-    const button = screen.getByRole('link', {name: 'Cart'})
+    const button = screen.getByRole('link', {name: /Cart/})
 
     await user.click(button)
 
