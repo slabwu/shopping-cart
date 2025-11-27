@@ -1,14 +1,10 @@
-import { Link, useLoaderData } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { ShopContext } from '../App.jsx'
 
-export async function loader({ params }) {
-  return params.id
- }
-
 export default function ProductPage() {
-  const id = useLoaderData()
   const { products }  = useContext(ShopContext)
+  const { id } = useParams()
   const product = products[id]
 
   return (
