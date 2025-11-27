@@ -1,5 +1,5 @@
 // import { useLoaderData } from "react-router-dom";
-import ProductCard from "../components/ProductCard/ProductCard.jsx";
+import ProductCard from "../components/ProductCard/ProductCard.jsx"
 
 //  export function loader() {
 //   const products = [
@@ -13,7 +13,7 @@ import ProductCard from "../components/ProductCard/ProductCard.jsx";
 //   return products
 //  }
 
-const Shop = () => {
+export default function Shop() {
   const products = [{title:'cat'}]
 
   return (
@@ -21,11 +21,9 @@ const Shop = () => {
       <h2>This is the shop.</h2>
       <div>
         {products.map(product => (
-          <ProductCard product={product} />
+          <ProductCard product={product} key={product.title} />
         ))}
       </div>
     </div>
-  );
-};
-
-export default Shop;
+  )
+}

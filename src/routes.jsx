@@ -13,11 +13,11 @@ const routes = [
                 element: <Homepage />,
             },
             {
-                path: '/shop',
+                path: 'shop',
                 element: <Shop />,
             },
             {
-                path: '/cart',
+                path: 'cart',
                 element: <Cart />,
             },
         ]
