@@ -114,4 +114,14 @@ describe('Product page', () => {
 
     expect(await screen.findByText(/Fjallraven/)).toBeInTheDocument()
   })
+
+  it('updates cart count', async () => {
+    const user = userEvent.setup()
+    await goToProduct(user)
+
+    const button = await screen.findByRole('link', {name: 'Buy now'})
+    await user.click(button)
+
+    expect(await screen.findByRole('link', {name: 'Cart (1)'})).toBeInTheDocument()
+  })
 })
