@@ -42,17 +42,32 @@ describe('App component', () => {
 
     await user.click(button)
 
-    expect(screen.getByText('This is the cart.')).toBeInTheDocument()
+    expect(await screen.findByText('This is the cart.')).toBeInTheDocument()
   })
 })
 
 describe('Homepage', () => {
-  it('directs users to shop page', async () => {
+  it('directs user to shop page', async () => {
     const user = userEvent.setup()
-    const button = screen.getByRole('link', {name: 'Go to shop'})
+    const button = screen.getByRole('link', {name: 'Shop'})
 
     await user.click(button)
 
-    expect(screen.getByText('This is the shop.')).toBeInTheDocument()
+    expect(await screen.findByText('This is the shop.')).toBeInTheDocument()
+  })
+})
+
+describe('Shop page', () => {
+  async function goToShop(user) {
+    const button = screen.getByRole('link', {name: 'Go to shop'})
+    await user.click(button)
+  }
+
+  it('renders 20 items', async () => {
+    const user = userEvent.setup()
+    await goToShop(user)
+    const section = await screen.findByTestId('productSection')
+
+    expect(within(section).getAllByRole('link')).toHaveLength(20)
   })
 })

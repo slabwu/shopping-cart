@@ -1,19 +1,19 @@
 import { useLoaderData } from "react-router-dom";
 import ProductCard from "../components/ProductCard/ProductCard.jsx"
 
- export function loader() {
-  const products = [
-    {
-      title: 'umbrella'
-    },
-    {
-      title: 'book'
-    },
-    {
-      title: 'jacket'
+ export async function loader() {
+  let products
+  try {
+    const response = await fetch('https://fakestoreapi.com/products')
+    if (!response.ok) {
+      throw new Error(`${response.status} error`)
     }
-  ]
-  return products
+    products = await response.json()
+  } catch(err) {
+    console.log(err)
+  } finally {
+    return products
+  }
  }
 
 export default function Shop() {
@@ -22,11 +22,11 @@ export default function Shop() {
   return (
     <div>
       <h2>This is the shop.</h2>
-      <div>
+      <section data-testid='productSection'>
         {products.map(product => (
           <ProductCard product={product} key={product.title} />
         ))}
-      </div>
+      </section>
     </div>
   )
 }
