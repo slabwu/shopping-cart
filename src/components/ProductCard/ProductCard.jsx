@@ -2,9 +2,22 @@ import { Link } from 'react-router-dom'
 import styles from './ProductCard.module.css'
 
 export default function ProductCard({ product }) {
+    let stars = ''
+    for (let i = 0; i < Math.floor(product.rating.rate); i++) {
+        stars += '★'
+    }
+
     return (
-        <Link to={`product/${product.id}`} className={styles.card}>
-            <h3>{product.title}</h3>
-        </Link>
+        <>
+            <div className={styles.card}>
+                <Link to={`product/${product.id}`}>
+                <img src={product.image} alt={product.title} />
+                
+                <h3>{product.title}</h3>
+                <h2>{stars} {product.rating.count}</h2>
+                <h2>${product.price}</h2>
+                </Link>
+            </div>
+        </>
     )
 }

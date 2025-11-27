@@ -16,7 +16,10 @@ export default function Cart() {
       {cartItems && Object.keys(cartItems).map(id =>
         <CartCard key={id} product={cartItems[id]} />
       )}
-      <div>Total: ${Math.round(total * 100) / 100}</div>
+      {cartItems && <>
+        <div>Total: ${Math.round(total * 100) / 100}</div>
+        <button onClick={() => alert('Thank you!')}>Checkout</button>
+      </>}
     </div>
   )
 }

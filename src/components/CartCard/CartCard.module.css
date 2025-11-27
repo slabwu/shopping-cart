@@ -1,7 +1,11 @@
 .card {
     display: flex;
     gap: 50px;
-    background-color: grey;
+    background-color: rgb(227, 227, 227);
     height: 100px;
-    width: 500px;
+    width: 800px;
+}
+
+.image {
+    width: 100px;
 }

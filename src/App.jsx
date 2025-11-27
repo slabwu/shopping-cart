@@ -89,9 +89,7 @@ function App() {
         <NavLink to='shop'>Shop</NavLink>
         <NavLink to='cart'>Cart {`(${cartCount})`}</NavLink>
       </header>
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
     </ShopContext>
   )
 }

@@ -7,7 +7,7 @@ export default function Shop() {
   const { products }  = useContext(ShopContext)
 
   return (
-    <div>
+    <div class='shop'>
       <h2>This is the shop.</h2>
       <section data-testid='productSection'>
         {products && products.map(product => (

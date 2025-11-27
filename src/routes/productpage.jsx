@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { ShopContext } from '../App.jsx'
 import Counter from '../components/Counter/Counter.jsx'
+import '../index.css'
 
 export default function ProductPage() {
   const [ count, setCount ] = useState(1)

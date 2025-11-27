@@ -1,5 +1,27 @@
 .card {
-    background-color: grey;
-    height: 100px;
-    width: 100px;
+    background-color: rgb(225, 225, 225);
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card img {
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.card h3, .card h2 {
+    text-decoration: none;
+    color: black;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card a {
+    text-decoration: none;
 }
