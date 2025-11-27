@@ -13,6 +13,14 @@ afterEach(() => {
   cleanup();
 })
 
+async function button(name) {
+  return await screen.findByRole('link', {name: name})
+}
+
+async function text(name) {
+  return await screen.findByText(name)
+}
+
 describe('App component', () => {
   it('renders correct heading', () => {
     expect(screen.getByRole('heading', {name: 'Header'}).textContent).toMatch(/header/i)
@@ -23,49 +31,38 @@ describe('App component', () => {
     expect(within(banner).getAllByRole('link')).toHaveLength(3)
   })
 
-  it('renders homepage', () => {
-    expect(screen.getByText('This is the homepage.')).toBeInTheDocument()
+  it('renders homepage', async () => {
+    expect(await text('This is the homepage.')).toBeInTheDocument()
   })
 
   it('renders change to shop page', async () => {
     const user = userEvent.setup()
-    const button = screen.getByRole('link', {name: 'Shop'})
+    await user.click(await button('Shop'))
 
-    await user.click(button)
-
-    expect(await screen.findByText('This is the shop.')).toBeInTheDocument()
+    expect(await text('This is the shop.')).toBeInTheDocument()
   })
 
   it('renders change to cart page', async () => {
     const user = userEvent.setup()
-    const button = screen.getByRole('link', {name: /Cart/})
+    await user.click(await button(/Cart/))
 
-    await user.click(button)
-
-    expect(await screen.findByText('This is the cart.')).toBeInTheDocument()
+    expect(await text('This is the cart.')).toBeInTheDocument()
   })
 })
 
 describe('Homepage', () => {
   it('directs user to shop page', async () => {
     const user = userEvent.setup()
-    const button = screen.getByRole('link', {name: 'Shop'})
+    await user.click(await button('Shop'))
 
-    await user.click(button)
-
-    expect(await screen.findByText('This is the shop.')).toBeInTheDocument()
+    expect(await text('This is the shop.')).toBeInTheDocument()
   })
 })
 
 describe('Shop page', () => {
-  async function goToShop(user) {
-    const button = screen.getByRole('link', {name: 'Go to shop'})
-    await user.click(button)
-  }
-
   it('renders 20 items', async () => {
     const user = userEvent.setup()
-    await goToShop(user)
+    await user.click(await button('Go to shop'))
     const section = await screen.findByTestId('productSection')
 
     expect(await within(section).findAllByRole('link')).toHaveLength(20)
@@ -73,55 +70,60 @@ describe('Shop page', () => {
 
   it('directs user to product page', async () => {
     const user = userEvent.setup()
-    await goToShop(user)
+    await user.click(await button('Go to shop'))
 
-    const button = await screen.findByRole('link', {name: /Fjallraven/})
-    await user.click(button)
+    await user.click(await button(/Fjallraven/))
 
-    expect(await screen.findByText('Buy now')).toBeInTheDocument()
+    expect(await text('Buy now')).toBeInTheDocument()
   })
 })
 
 describe('Product page', () => {
   async function goToProduct(user) {
-    await user.click(await screen.findByRole('link', {name: 'Go to shop'}))
-    await user.click(await screen.findByRole('link', {name: /Fjallraven/}))
+    await user.click(await button('Go to shop'))
+    await user.click(await button(/Fjallraven/))
   }
 
   it('renders product', async () => {
     const user = userEvent.setup()
     await goToProduct(user)
 
-    expect(await screen.findByText(/Your perfect pack/)).toBeInTheDocument()
+    expect(await text(/Your perfect pack/)).toBeInTheDocument()
   })
 
   it('redirects to cart when user clicks Buy now', async () => {
     const user = userEvent.setup()
     await goToProduct(user)
 
-    const button = await screen.findByRole('link', {name: 'Buy now'})
-    await user.click(button)
+    await user.click(await button('Buy now'))
 
-    expect(await screen.findByText('This is the cart.')).toBeInTheDocument()
+    expect(await text('This is the cart.')).toBeInTheDocument()
   })
 
   it('adds product to cart', async () => {
     const user = userEvent.setup()
     await goToProduct(user)
 
-    const button = await screen.findByRole('link', {name: 'Buy now'})
-    await user.click(button)
+    await user.click(await button('Buy now'))
 
-    expect(await screen.findByText(/Fjallraven/)).toBeInTheDocument()
+    expect(await text(/Fjallraven/)).toBeInTheDocument()
+  })
+
+  it('adds multiple products to cart', async () => {
+    const user = userEvent.setup()
+    await goToProduct(user)
+
+    await user.click(await button('Buy now'))
+
+    expect(await text(/Fjallraven/)).toBeInTheDocument()
   })
 
   it('updates cart count', async () => {
     const user = userEvent.setup()
     await goToProduct(user)
 
-    const button = await screen.findByRole('link', {name: 'Buy now'})
-    await user.click(button)
+    await user.click(await button('Buy now'))
 
-    expect(await screen.findByRole('link', {name: 'Cart (1)'})).toBeInTheDocument()
+    expect(await button('Cart (1)')).toBeInTheDocument()
   })
 })
