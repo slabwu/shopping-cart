@@ -1,11 +1,35 @@
 .card {
     display: flex;
     gap: 50px;
-    background-color: rgb(227, 227, 227);
     height: 100px;
     width: 800px;
+    align-items: center;
+    padding-left: 30px;
+    border-bottom: solid 1px rgb(204, 204, 204);
 }
 
 .image {
     width: 100px;
+}
+
+.title {
+    width: 400px;
+    font-size: 18px;
+}
+
+.price {
+    width: 100px;
+    font-size: 18px;
+}
+
+.card button {
+    background: none;
+    border: none;
+    height: 20px;
+    width: 20px;
+    font-size: 18px;
+}
+
+.card button:hover {
+    cursor: pointer;
 }

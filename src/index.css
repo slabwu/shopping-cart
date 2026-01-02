@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #076b3e;
+  --secondary-color: #008a43;
+  --tertiary-color: #87e0a5be;
+  --background-color: #e2ffec;
+}
+
 html, #root, .homepage {
   height: 100%;
 }
@@ -7,16 +14,27 @@ body {
   margin: 0;
 }
 
+main {
+  margin-top: 110px;
+}
+
 header {
   display: flex;
-  padding: 30px;
+  padding: 16px 30px 16px;
   margin: 0;
-  background-color: rgb(232, 232, 232);
+  background-color: var(--primary-color);
+  color: white;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 2;
 }
 
 header h1 {
   flex: 1;
-  font-size: 50px;
+  font-size: 40px;
   margin: 0;
 }
 
@@ -25,7 +43,7 @@ header a {
   height: 100%;
   padding: 20px;
   font-size: 20px;
-  color: black;
+  color: white;
   transition: all 0.2s ease;
 }
 
@@ -33,25 +51,37 @@ header a:hover {
   transform: translateY(-4px);
 }
 
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage img {
+  margin-top: 50px;
+  height: 400px;
+}
+
 .homepage a {
   text-decoration: none;
-  background-color: rgb(54, 19, 169);
+  background-color: var(--secondary-color);
   color: white;
   padding: 20px 40px 20px;
   font-size: 20px;
   border-radius: 10px;
   transition: all 0.2s ease;
   margin: 40px;
+  display: inline-block;
 }
 
 .homepage a:hover {
-  background-color: rgb(138, 9, 185);
-  transform: scaleX(1.2);
+  background-color: var(--primary-color);
+  transform: scale(1.1);
   color: white;
 }
 
 .homepage h2 {
-  font-size: 60px;
+  font-size: 40px;
 }
 
 .shop {
@@ -62,15 +92,25 @@ header a:hover {
 
 .shop section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, max-content));
+  gap: 30px;
+  justify-content: center;
   width: 100%;
+  margin: 0 0 60px;
 }
 
 .productPage {
   display: flex;
-  margin: 80px;
+  margin: 130px 80px 80px;
   gap: 80px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: var(--background-color);
+  box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 0.1);
+}
+
+.productPage img {
+  height: 500px;
 }
 
 .productPage h2 {
@@ -79,13 +119,14 @@ header a:hover {
 }
 
 .productPage h3 {
-  font-size: 50px;
+  font-size: 30px;
   margin: 10px 0 30px;
 }
 
 .productPage h4 {
   font-size: 20px;
   margin: 4px;
+  font-weight: normal;
 }
 
 .productPage p {
@@ -95,19 +136,50 @@ header a:hover {
   margin-bottom: 50px;
 }
 
-.purchase {
+.purchase, .checkout {
   color: white;
-  background-color: blueviolet;
+  background-color: var(--secondary-color);
   padding: 20px 30px 20px;
   border: none;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
   margin: 20px 10px 0 0;
   border-radius: 10px;
   transition: all 0.2s ease;
 }
 
-.purchase:hover {
+.purchase:hover, .checkout:hover {
   cursor: pointer;
-  background-color: purple;
+  background-color: var(--primary-color);
+}
+
+.cartPage {
+  display: flex;
+  margin: 120px 40px 40px;
+  gap: 40px;
+}
+
+.cartPage .purchases {
+  width: 840px;
+}
+
+.cartPage .payment {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment div {
+  display: flex;
+  width: 200px;
+  font-size: 20px;
+  margin: 10px 0 10px;
+}
+
+.payment div:nth-child(4) {
+  font-weight: bold;
+  margin: 30px 0 30px;
+}
+
+.payment div span:nth-child(1) {
+  flex: 1;
 }

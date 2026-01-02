@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
+import trolley from '../assets/trolley-cart.avif'
 
 export default function Homepage() {
   return (
-    <div class='homepage'>
-      <h2>This is the homepage.</h2>
+    <main class='homepage'>
+      <img src={trolley} alt="Trolley Cart" />
+      <h2>The best deals, always.</h2>
       <Link to='shop'>Go to shop</Link>
-    </div>
+    </main>
   )
 }

@@ -27,7 +27,7 @@ async function text(name) {
 
 describe('App component', () => {
   it('renders correct heading', () => {
-    expect(screen.getByRole('heading', {name: 'Header'}).textContent).toMatch(/header/i)
+    expect(screen.getByRole('heading', {name: 'Emerald'}).textContent).toMatch(/Emerald/i)
   })
 
   it('renders three links in banner', () => {
@@ -36,7 +36,7 @@ describe('App component', () => {
   })
 
   it('renders homepage', async () => {
-    expect(await text('This is the homepage.')).toBeInTheDocument()
+    expect(await text('The best deals, always.')).toBeInTheDocument()
   })
 
   it('renders change to shop page', async () => {

@@ -7,13 +7,13 @@ export default function Shop() {
   const { products }  = useContext(ShopContext)
 
   return (
-    <div class='shop'>
+    <main class='shop'>
       <h2>This is the shop.</h2>
       <section data-testid='productSection'>
         {products && products.map(product => (
           <ProductCard product={product} key={product.title} />
         ))}
       </section>
-    </div>
+    </main>
   )
 }

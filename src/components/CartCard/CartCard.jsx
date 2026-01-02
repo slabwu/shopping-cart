@@ -14,9 +14,8 @@ export default function CartCard({ product }) {
 
     return (
         <div className={styles.card}>
-          <p>{product.title}</p>
-          <p>{product.quantity}</p>
-          <p>${product.price * product.quantity}</p>
+          <p className={styles.title}>{product.title}</p>
+          <p className={styles.price}>${product.price * product.quantity}</p>
           <Counter count={ count } setCount={ updateCount } />
           <button onClick={() => deleteCartItem(product.id)}>✕</button>
         </div>

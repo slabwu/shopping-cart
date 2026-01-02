@@ -7,15 +7,13 @@ export default function ProductCard({ product }) {
 
     return (
         <>
-            <div className={styles.card}>
-                <Link to={`product/${product.id}`}>
+            <Link to={`product/${product.id}`} className={styles.card}>
                 <img src={product.image} alt={product.title} />
                 
-                <h3>{product.title}</h3>
-                <h2>{stars} {product.rating.count}</h2>
-                <h2>${product.price}</h2>
-                </Link>
-            </div>
+                <h2>{product.title}</h2>
+                <h3><span>{stars}</span> {product.rating.count}</h3>
+                <h4>${product.price}</h4>
+            </Link>
         </>
     )
 }

@@ -9,21 +9,6 @@ export const ShopContext = createContext({
   deleteCartItem: () => {}
 })
 
-async function fetchProducts() {
-      let productData
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products`)
-        if (!response.ok) {
-          throw new Error(`${response.status} error`)
-        }
-        productData = await response.json()
-      } catch(err) {
-        console.log(err)
-      } finally {
-        setProducts(productData)
-      }
-}
-
 function App() {
   const [cartItems, setCartItems] = useState({})
   const [products, setProducts] = useState([])
@@ -84,7 +69,7 @@ function App() {
   return (
     <ShopContext value={{ products, cartItems, addToCart, changeCartQuantity, deleteCartItem }}>
       <header>
-        <h1>Header</h1>
+        <h1>Emerald</h1>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='shop'>Shop</NavLink>
         <NavLink to='cart'>Cart {`(${cartCount})`}</NavLink>

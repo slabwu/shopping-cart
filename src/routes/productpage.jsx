@@ -14,7 +14,7 @@ export default function ProductPage() {
   let stars = '★'.repeat(rating) + '☆'.repeat(5 - rating)
  
   return (
-    <div className='productPage'>
+    <main className='productPage'>
       <img src={product.image} alt={product.title} />
       <div className='productInfo'>
         <h2>{product.title}</h2>
@@ -28,6 +28,6 @@ export default function ProductPage() {
             <button onClick={() => addToCart(product, count)} className='purchase'>Add to Cart</button>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
